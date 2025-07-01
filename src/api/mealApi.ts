@@ -15,6 +15,19 @@ export const mealApi = createApi({
     getMealById: builder.query({
       query: (id: string) => `lookup.php?i=${id}`,
     }),
+
+    getCategories: builder.query({
+      query: () => "list.php?c=list",
+    }),
+    getAreas: builder.query({
+      query: () => "list.php?a=list",
+    }),
+    filterByCategory: builder.query({
+      query: (category: string) => `filter.php?c=${category}`,
+    }),
+    filterByArea: builder.query({
+      query: (area: string) => `filter.php?a=${area}`,
+    }),
   }),
 });
 
@@ -22,4 +35,8 @@ export const {
   useSearchMealsQuery,
   useGetRandomMealQuery,
   useGetMealByIdQuery,
+  useGetCategoriesQuery,
+  useGetAreasQuery,
+  useFilterByCategoryQuery,
+  useFilterByAreaQuery,
 } = mealApi;

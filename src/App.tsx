@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useSearchMealsQuery } from "./api/mealApi";
 import SearchBar from "./components/SearchBar";
 import MealCard from "./components/MealCard";
+import MealCarousel from "./components/MealCarousel";
+import AdvancedFilter from "./components/AdvancedFilter";
 
 const App = () => {
   const [query, setQuery] = useState("chicken");
@@ -15,7 +17,9 @@ const App = () => {
       </h1>
 
       <SearchBar query={query} setQuery={setQuery} />
+      <AdvancedFilter />
 
+      <MealCarousel />
       {isLoading && <p className="text-center text-gray-500">Loading...</p>}
       {error && (
         <p className="text-center text-red-500">Error loading meals.</p>
