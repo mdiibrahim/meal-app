@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSearchMealsQuery } from "./api/mealApi";
 import SearchBar from "./components/SearchBar";
 import MealCard from "./components/MealCard";
@@ -7,8 +6,10 @@ import MealCarousel from "./components/MealCarousel";
 import AdvancedFilter from "./components/AdvancedFilter";
 
 const App = () => {
-  const [query, setQuery] = useState("chicken");
-  const { data, error, isLoading } = useSearchMealsQuery(query);
+  const [query, setQuery] = useState(""); // Empty by default
+  const { data, error, isLoading } = useSearchMealsQuery(query, {
+    skip: !query,
+  });
 
   return (
     <div className="min-h-screen p-6 bg-gray-50">
@@ -16,20 +17,29 @@ const App = () => {
         🍽️ Meal Finder
       </h1>
 
+      {/* 🔍 Search Box */}
       <SearchBar query={query} setQuery={setQuery} />
-      <AdvancedFilter />
 
       <MealCarousel />
-      {isLoading && <p className="text-center text-gray-500">Loading...</p>}
+      {/* 🧪 Advanced Filter */}
+      {/* Note: AdvancedFilter internally handles category/area selection */}
+      <AdvancedFilter />
+
+      {/* 🍱 Meal Search Results */}
+      {isLoading && (
+        <p className="text-center text-gray-500 mt-6">Loading...</p>
+      )}
       {error && (
-        <p className="text-center text-red-500">Error loading meals.</p>
+        <p className="text-center text-red-500 mt-6">Failed to load meals.</p>
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-        {data?.meals?.map((meal: any) => (
-          <MealCard key={meal.idMeal} meal={meal} />
-        ))}
-      </div>
+      {data?.meals && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+          {data.meals.map((meal: any) => (
+            <MealCard key={meal.idMeal} meal={meal} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
