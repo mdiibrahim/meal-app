@@ -1,8 +1,9 @@
+import React from "react";
 import { useGetRandomMealQuery } from "../api/mealApi";
 import MealCard from "../components/MealCard";
 
 const Random = () => {
-  const { data, isLoading, error, refetch } = useGetRandomMealQuery(undefined);
+  const { data, isLoading, error, refetch } = useGetRandomMealQuery();
 
   return (
     <div className="min-h-screen p-6 bg-yellow-50">
@@ -19,12 +20,14 @@ const Random = () => {
         </button>
       </div>
 
-      {isLoading && <p className="text-center text-gray-500">Loading...</p>}
+      {isLoading && (
+        <p className="text-center text-gray-500">Loading random meal...</p>
+      )}
       {error && (
         <p className="text-center text-red-500">Something went wrong.</p>
       )}
 
-      {data?.meals && (
+      {data?.meals?.[0] && (
         <div className="flex justify-center">
           <MealCard meal={data.meals[0]} />
         </div>

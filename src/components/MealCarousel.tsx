@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useSearchMealsQuery } from "../api/mealApi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -6,14 +8,19 @@ import MealCard from "./MealCard";
 const MealCarousel = () => {
   const { data, isLoading, error } = useSearchMealsQuery("chicken");
 
-  if (isLoading) return <p className="text-center text-gray-500">Loading...</p>;
+  if (isLoading)
+    return (
+      <p className="text-center text-gray-500">Loading featured meals...</p>
+    );
   if (error)
-    return <p className="text-center text-red-500">Failed to load meals.</p>;
+    return (
+      <p className="text-center text-red-500">Error loading featured meals.</p>
+    );
 
   return (
-    <div className="mt-10">
-      <h2 className="text-2xl font-bold text-center mb-6 text-green-700">
-        🍔 Featured Meals
+    <div className="mt-12">
+      <h2 className="text-2xl font-bold text-center mb-4 text-green-700">
+        🔥 Featured Meals
       </h2>
 
       <Swiper

@@ -7,7 +7,7 @@ interface Props {
 
 const SearchBar: React.FC<Props> = ({ query, setQuery }) => {
   return (
-    <div className="flex justify-center mb-6">
+    <div className="flex justify-center">
       <input
         type="text"
         value={query}

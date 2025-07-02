@@ -31,12 +31,12 @@ const AdvancedFilter = () => {
   const mealsToShow = categoryMeals?.meals || areaMeals?.meals || [];
 
   return (
-    <div className="bg-white p-6 rounded shadow mt-10">
+    <div className="bg-white p-4 rounded shadow w-full">
       <h2 className="text-2xl font-bold mb-4 text-blue-700">
         🔍 Advanced Filter
       </h2>
 
-      <div className="flex flex-col md:flex-row gap-4 mb-6">
+      <div className="flex flex-col md:flex-row gap-4">
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}

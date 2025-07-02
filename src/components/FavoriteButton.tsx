@@ -22,11 +22,11 @@ const FavoriteButton: React.FC<{ meal: Meal }> = ({ meal }) => {
   return (
     <button
       onClick={handleToggle}
-      className={`mt-3 px-4 py-2 text-sm rounded shadow ${
+      className={`px-4 py-2 text-sm font-medium rounded-md shadow ${
         isFavorite
           ? "bg-red-500 text-white hover:bg-red-600"
           : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-      } transition duration-200`}
+      }`}
     >
       {isFavorite ? "★ Bookmarked" : "☆ Bookmark"}
     </button>

@@ -16,11 +16,6 @@ const Navbar = () => {
         </h1>
         <ul className="flex gap-6 text-lg">
           <li>
-            <Link to="/" className={isActive("/")}>
-              Home
-            </Link>
-          </li>
-          <li>
             <Link to="/random" className={isActive("/random")}>
               Random
             </Link>
