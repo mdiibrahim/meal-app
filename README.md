@@ -6,7 +6,7 @@ This is a responsive web application for a restaurant that allows users to explo
 
 ## 🔗 Live Demo
 
-👉 https://.vercel.app
+👉 https://meal-app-drab-two.vercel.app/
 
 ---
 
