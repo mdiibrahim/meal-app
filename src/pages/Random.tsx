@@ -1,9 +1,8 @@
-import React from "react";
 import { useGetRandomMealQuery } from "../api/mealApi";
 import MealCard from "../components/MealCard";
 
 const Random = () => {
-  const { data, isLoading, error, refetch } = useGetRandomMealQuery();
+  const { data, isLoading, error, refetch } = useGetRandomMealQuery("");
 
   return (
     <div className="min-h-screen p-6 bg-yellow-50">
