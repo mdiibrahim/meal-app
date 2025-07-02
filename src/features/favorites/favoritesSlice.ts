@@ -4,6 +4,8 @@ interface Meal {
   idMeal: string;
   strMeal: string;
   strMealThumb: string;
+  strCategory: string;
+  strArea: string;
 }
 
 interface FavoritesState {
@@ -27,8 +29,17 @@ const favoritesSlice = createSlice({
           (m) => m.idMeal !== action.payload.idMeal
         );
       } else {
-        state.meals.push(action.payload);
+        // Save complete meal object
+        state.meals.push({
+          idMeal: action.payload.idMeal,
+          strMeal: action.payload.strMeal,
+          strMealThumb: action.payload.strMealThumb,
+          strCategory: action.payload.strCategory || "Unknown",
+          strArea: action.payload.strArea || "Unknown",
+        });
       }
+
+      // Save to localStorage
       localStorage.setItem("favorites", JSON.stringify(state.meals));
     },
   },
